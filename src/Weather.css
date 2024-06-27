@@ -1,6 +1,18 @@
+body {
+  display: flex;
+  justify-content: center;
+  padding: 100px;
+}
+
 .Weather {
   border: 1px solid black;
-  padding: 20px;
+  padding: 30px;
+  font-family: "LXGW WenKai TC", cursive;
+  max-width: 600px;
+}
+
+.Weather form {
+  margin-bottom: 12px;
 }
 
 .Weather h1 {
@@ -13,5 +25,24 @@
   list-style: none;
   margin: 0;
   padding: 0;
-  line-height: ;
+}
+
+.Weather .temperature {
+  font-weight: bold;
+  font-size: 50px;
+}
+
+.Weather img {
+  height: 64px;
+  width: 64px;
+  margin-right: 10px;
+  display: inline-block;
+}
+
+.Weather .unit {
+  color: monospace;
+  font-size: 18px;
+  position: relative;
+  top: -32px;
+  margin-left: 5px;
 }

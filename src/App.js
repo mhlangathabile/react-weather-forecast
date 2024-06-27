@@ -1,6 +1,6 @@
 import logo from "./logo.svg";
 import Weather from "./Weather";
-import "./Weather.css";
+import "./index.css";
 
 export default function App() {
   return (
