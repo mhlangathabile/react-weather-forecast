@@ -1,0 +1,17 @@
+.Weather {
+  border: 1px solid black;
+  padding: 20px;
+}
+
+.Weather h1 {
+  color: #141010;
+  line-height: 50px;
+  font-size: 40px;
+}
+
+.Weather ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  line-height: ;
+}
