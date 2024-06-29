@@ -2,18 +2,21 @@ import React, { useState } from "react";
 import axios from "axios";
 import "./Weather.css";
 
-export default function Weather() {
+export default function Weather(props) {
   const [loading, setLoading] = useState(false);
-  const [temperature, setTemperature] = useState(" ");
+  const [weatherData, setWeatherData] = useState({});
+
   function handleResponse(response) {
     console.log(response.data);
-    setTemperature(response.data.main.temp);
+    setWeatherData({
+      temperature: response.data.main.temp,
+      wind: response.data.wind.speed,
+      humidity: response.data.main.humidity,
+      city: response.data.name,
+    });
+
     setLoading(true);
   }
-
-  const apiKey = "40b745c14eadad7b7c4e6e4bf3b70103";
-  let city = "Bangkok";
-  let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}`;
 
   if (loading) {
     return (
@@ -41,14 +44,16 @@ export default function Weather() {
         <h1>Bangkok, Thailand</h1>
         <ul>
           <li>Wednesday 18:00</li>
-          <li>Cloudy</li>
+          <li>{weatherData.description}</li>
         </ul>
         <div className="row">
           <div className="col-6">
             <div className="clearfix">
               <img src="" alt="Cloudy" className="float-left" />
               <div className="float-left">
-                <span className="temperature">{temperature}</span>
+                <span className="temperature">
+                  {Math.round(weatherData.temperature)}
+                </span>
                 <span className="unit">°C</span>
               </div>
             </div>
@@ -56,8 +61,8 @@ export default function Weather() {
           <div className="col-6">
             <ul>
               <li>Precipitation : 0%</li>
-              <li>Humidity : 85%</li>
-              <li>Wind : 11km/hr</li>
+              <li>Humidity : {weatherData.humidity}%</li>
+              <li>Wind : {weatherData.wind}km/hr</li>
             </ul>
           </div>
         </div>
@@ -65,8 +70,9 @@ export default function Weather() {
     );
   } else {
     const apiKey = "40b745c14eadad7b7c4e6e4bf3b70103";
-    let city = "Bangkok";
-    let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}`;
+    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${props.defaultCity}&appid=${apiKey}`;
     axios.get(apiUrl).then(handleResponse);
+
+    return "Loading...";
   }
 }
