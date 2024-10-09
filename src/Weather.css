@@ -46,3 +46,7 @@ body {
   top: -32px;
   margin-left: 5px;
 }
+
+.WeatherForecast {
+  text-align: center;
+}
